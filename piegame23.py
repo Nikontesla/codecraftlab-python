@@ -1,3 +1,4 @@
+# numba 1
 #import library
 import pygame
 import random
