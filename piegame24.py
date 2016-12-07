@@ -16,13 +16,12 @@ class Player(pygame.sprite.Sprite):
             self.images.append(pygame.image.load('pug/' + str(x) + '.gif').convert())
         self.index = 0
         self.image = self.images[self.index]
-        self.image.set_colorkey((255,255, 255), RLEACCEL)
+        #self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect()
         #self.size = self.image.get_size()
         #self.image = pygame.transform.scale(self.image, (self.size[0]/5,self.size[1]/5))
         self.cooldown = 70
         self.old_time = pygame.time.get_ticks()
-        
     
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
@@ -51,10 +50,6 @@ class Player(pygame.sprite.Sprite):
             if self.index >= len(self.images):
                 self.index = 0
             self.image = self.images[self.index]
-            self.image.set_colorkey((255, 255, 255), RLEACCEL)
-            #size = self.image.get_size()
-            #self.image = pygame.transform.scale(self.image, (size[0]/5,size[1]/5))
-            
 
 class Opponent(pygame.sprite.Sprite):
     # def __init__(self):
@@ -66,35 +61,18 @@ class Opponent(pygame.sprite.Sprite):
         
     def __init__(self):
         super(Opponent, self).__init__()
-      #  self.image = pygame.image.load('eevee8.jpg').convert()
-        #self.image.set_colorkey((255, 255, 255), RLEACCEL)
-       # self.rect = self.image.get_rect(
-       #     center=(random.randint(820, 900), random.randint(0, 600))
-       # )
-        self.speed = 1
-        self.images = []
-        for x in range(2):
-            self.images.append(pygame.image.load('pizza/' + str(x) + '.gif').convert())
-        self.index = 0
-        self.image = self.images[self.index]
+        self.image = pygame.image.load('taco 1.jpg').convert()
+        self.image.set_colorkey((255, 255, 255), RLEACCEL)
         self.rect = self.image.get_rect(
             center=(random.randint(820, 900), random.randint(0, 600))
         )
-        self.cooldown = 500
-        self.old_time = pygame.time.get_ticks()
+        self.speed = 1
+        
+
     def update(self):
         self.rect.move_ip(-self.speed, 0)
         if self.rect.right < 0:
-            self.kill()
-        new_time = pygame.time.get_ticks()
-        if new_time - self.old_time >= self.cooldown:
-            self.old_time = new_time
-            self.index += 1
-            if self.index >= len(self.images):
-                self.index = 0
-            self.image = self.images[self.index]
-            size = self.image.get_size()
-            #self.image = pygame.transform.scale(self.image, (size[0]/5,size[1]/5))
+            self.kill()            
 
 #initialize pygame modules
 pygame.init()
@@ -107,7 +85,7 @@ player = Player()
 
 #set background color
 background = pygame.Surface(screen.get_size())
-background.fill((204, 204, 255))
+background.fill((255, 255, 255))
 
 # Create the surface and pass in a tuple with its length and width
 #surf = pygame.Surface((75, 75))
