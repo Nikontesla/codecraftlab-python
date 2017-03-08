@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
             self.image.set_colorkey((255, 255, 255), RLEACCEL)
             self.rect = self.image.get_rect()
         
-        def update(self, pressed_keys): 
+        def update(self, pressed_keys):
             if pressed_keys[K_UP]:
                 self.rect.move_ip(0, -1)
             if pressed_keys[K_DOWN]:
